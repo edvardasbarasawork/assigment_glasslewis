@@ -20,6 +20,7 @@ namespace GlassLewisTest.DataAccess.Repositories
             return await QueryAsync<Company>(new QueryObject(@"
                 select 
                     c.Id as Id,
+                    c.Name as Name,
                     c.Ticker as Ticker,
                     c.ISIN as ISIN,
                     c.Website as Website,
@@ -33,9 +34,9 @@ namespace GlassLewisTest.DataAccess.Repositories
         public async Task<Company> CreateAsync(Company company)
         {
             return await QuerySingleAsync<Company>(new QueryObject(@"
-                insert into Companies (Id, ExchangeId, Ticker, ISIN, Website, Created)
-                output inserted.Id, inserted.ExchangeId, inserted.Ticker, inserted.ISIN, inserted.Website
-                values (newid(), @ExchangeId, @Ticker, @ISIN, @Website, getdate())
+                insert into Companies (Id, Name, ExchangeId, Ticker, ISIN, Website, Created)
+                output inserted.Id, inserted.Name, inserted.ExchangeId, inserted.Ticker, inserted.ISIN, inserted.Website
+                values (newid(), @Name, @ExchangeId, @Ticker, @ISIN, @Website, getdate())
             ", company));
         }
 
@@ -44,6 +45,7 @@ namespace GlassLewisTest.DataAccess.Repositories
             return await QueryFirstOrDefaultAsync<Company>(new QueryObject(@"
                 select 
                     c.Id as Id,
+                    c.Name as Name,
                     c.Ticker as Ticker,
                     c.ISIN as ISIN,
                     c.Website as Website,
@@ -59,7 +61,8 @@ namespace GlassLewisTest.DataAccess.Repositories
         {
             await ExecuteAsync(new QueryObject(@"
 	            update Companies 
-                set Ticker = @Ticker,
+                set Name = @Name,
+                    Ticker = @Ticker,
                     ISIN = @ISIN,
                     Website = @Website,
                     ExchangeId = @ExchangeId
@@ -74,6 +77,7 @@ namespace GlassLewisTest.DataAccess.Repositories
             return await QueryFirstOrDefaultAsync<Company>(new QueryObject(@"
                 select top 1
                     c.Id as Id,
+                    c.Name as Name,
                     c.Ticker as Ticker,
                     c.ISIN as ISIN,
                     c.Website as Website,

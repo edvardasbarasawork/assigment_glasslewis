@@ -15,6 +15,10 @@ namespace GlassLewisTest.Core.Entities
 
         [Required]
         [StringLength(256)]
+        public string Name { get; set; }
+
+        [Required]
+        [StringLength(256)]
         public string ISIN { get; set; }
 
         [StringLength(256)]
