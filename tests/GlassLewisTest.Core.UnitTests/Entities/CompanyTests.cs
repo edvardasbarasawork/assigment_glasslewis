@@ -1,10 +1,7 @@
 ﻿using GlassLewisTest.Core.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace GlassLewisTest.Core.UnitTests.Entities
 {
@@ -14,7 +11,7 @@ namespace GlassLewisTest.Core.UnitTests.Entities
         // TODO: add tests
 
         [TestMethod]
-        public async Task Correct_Format()
+        public void Correct_Format()
         {
             // Arrange
             var model = new Company()
@@ -35,7 +32,7 @@ namespace GlassLewisTest.Core.UnitTests.Entities
         }
 
         [TestMethod]
-        public async Task Bad_Website_URI_Format()
+        public void Bad_Website_URI_Format()
         {
             // Arrange
             var model = new Company()
@@ -57,7 +54,7 @@ namespace GlassLewisTest.Core.UnitTests.Entities
         }
 
         [TestMethod]
-        public async Task Bad_ISIN_Format()
+        public void Bad_ISIN_Format()
         {
             // Arrange
             var model = new Company()
